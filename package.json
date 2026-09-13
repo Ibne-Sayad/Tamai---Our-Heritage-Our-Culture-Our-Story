@@ -1,8 +1,29 @@
 {
-  "name": "tamai-heritage",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": { "dev": "next dev", "build": "next build", "typecheck": "tsc --noEmit" },
-  "dependencies": { "next": "latest", "react": "latest", "react-dom": "latest" },
-  "devDependencies": { "typescript": "^5", "@types/node": "^22", "@types/react": "^19", "@types/react-dom": "^19", "tailwindcss": "^4", "@tailwindcss/postcss": "^4" }
+    "name":  "tamai-heritage",
+    "version":  "0.1.0",
+    "private":  true,
+    "scripts":  {
+                    "dev":  "next dev",
+                    "build":  "next build",
+                    "typecheck":  "tsc --noEmit",
+                    "start":  "next start",
+                    "test:security":  "node tests/community-security.cjs",
+                    "test:guards":  "node tests/community-guards.cjs"
+                },
+    "dependencies":  {
+                         "@supabase/ssr":  "^0.12.7",
+                         "@supabase/supabase-js":  "^2.116.0",
+                         "next":  "latest",
+                         "react":  "latest",
+                         "react-dom":  "latest"
+                     },
+    "devDependencies":  {
+                            "@electric-sql/pglite":  "^0.5.8",
+                            "@tailwindcss/postcss":  "^4",
+                            "@types/node":  "^22",
+                            "@types/react":  "^19",
+                            "@types/react-dom":  "^19",
+                            "tailwindcss":  "^4",
+                            "typescript":  "^5"
+                        }
 }

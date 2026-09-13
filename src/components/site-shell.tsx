@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { publicRoutes } from "@/lib/routes";
+import { AccountNavigation } from "./account-navigation";
 import { useLanguage } from "./language-provider";
 
 const anchors = ["home", "history", "culture", "textile", "institutions", "stories", "gallery", "contribute"];
@@ -16,11 +17,11 @@ export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const current = publicRoutes.findIndex(route => route === pathname);
-  return <header className="site-header"><div className="container header-inner"><Wordmark/>
+  return <><AccountNavigation/><header className="site-header"><div className="container header-inner"><Wordmark/>
     <nav aria-label={copy.menu} className="desktop-nav">{copy.nav.map((label, i) => <Link key={anchors[i]} href={destination(i)} aria-current={i === current ? "page" : undefined} className={i === current ? "current" : i === 7 ? "nav-contribute" : ""}>{label}</Link>)}</nav>
     <div className="header-actions"><div className="language-switch" role="group" aria-label={copy.language}><button lang="en" aria-pressed={locale === "en"} onClick={() => setLocale("en")}>EN</button><span aria-hidden="true">/</span><button lang="bn" aria-pressed={locale === "bn"} onClick={() => setLocale("bn")}>বাংলা</button></div><button className="menu-button" aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(!open)}>{open ? copy.close : copy.menu}<span aria-hidden="true">{open ? "×" : "☰"}</span></button></div>
     <nav id="mobile-nav" aria-label={copy.menu} className="mobile-nav" hidden={!open} onKeyDown={event => { if (event.key === "Escape") { setOpen(false); document.querySelector<HTMLButtonElement>(".menu-button")?.focus(); } }}>{copy.nav.map((label, i) => <Link key={anchors[i]} href={destination(i)} aria-current={i === current ? "page" : undefined} onClick={() => setOpen(false)}>{label}</Link>)}</nav>
-  </div></header>;
+  </div></header></>;
 }
 export function Footer() {
   const { copy: t } = useLanguage();

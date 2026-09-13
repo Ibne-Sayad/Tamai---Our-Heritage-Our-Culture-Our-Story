@@ -2,93 +2,84 @@
 
 **Our Heritage, Our Culture, Our Story**
 
-A bilingual public heritage frontend for Tamai, Belkuchi, Sirajganj, Bangladesh. The eight public routes preserve the established woven design, shared header/footer and English/Bangla language system. Collection spaces and sample records are explicitly marked; no people, quotations, photographs or local historical records have been invented.
+A bilingual heritage website for Tamai, Belkuchi, Sirajganj, Bangladesh. Public frontend V1 is complete. Phase 2 adds Supabase authentication, opt-in community profiles, contributions, private uploads and moderation while retaining the existing public design.
 
-## Development
-
-Use the supported Node.js version for the installed Next.js release (this project was checked with Node.js 22).
+## Run locally
 
 ```sh
 npm install
 npm run dev
-npm run typecheck
-npm run build
 ```
 
-Open http://localhost:3000. The production build exports to `out/`. There is no `npm start` command for this static export; use a static file server to preview the output.
+Open http://localhost:3000. Missing Supabase configuration shows a clear setup state; public heritage pages remain available.
 
-Next.js App Router, TypeScript, React and Tailwind CSS 4 remain the stack. No new dependencies, backend, database, authentication, upload service or paid APIs were added.
+```sh
+npm run test:security
+npm run test:guards
+npm run typecheck
+npm run build
+npm start
+```
 
-## Public routes
+The app now uses normal Next.js server output. Static export was removed for cookie-based auth, callbacks and protected pages. Do not serve the old `out/` directory.
 
-| Route | Content |
-| --- | --- |
-| / | Village introduction and links into the archive |
-| /history | Research outline, source labels and history collection spaces |
-| /culture | Cultural themes, life events, food, recreation and a Then & Now framework |
-| /lungi-textile | Textile identity, general process, pattern studies and collection spaces |
-| /institutions | Institution categories, reusable example record and disabled directory preview |
-| /people-stories | Six story categories, reusable story record, oral history and generations framework |
-| /gallery | Seven collection placeholders, working category filters and native dialog previews |
-| /contribute | Eight contribution types, frontend form, future account workflow and moderation guidance |
+## Supabase setup
 
-All header/footer links point to the public routes. Existing contribution CTAs now open `/contribute`. The homepage retains its original informational disclosure and anchor for older links. A bilingual custom 404 provides a route back home.
-
-## Language and design
-
-`src/components/language-provider.tsx` remains the only language system. Dictionaries are composed in `src/content/translations.ts`; the new public-page content is in `src/content/public.ts`. Language selection persists in local storage when available and updates the document language without changing routes.
-
-Initial HTML and metadata are English. Bangla is selected client-side; separate indexable Bangla URLs are not implemented. English uses Cormorant Garamond and Inter; Bangla uses Hind Siliguri. The free Google Fonts are downloaded by Next.js at build time and self-hosted for visitors. Building needs access to those font files.
-
-The new styles in `src/app/public-pages.css` are scoped to the public-page components. Existing page designs remain intact. Woven graphics, striped borders, archive frames and photo placeholders use CSS; the social graphic is branded artwork, not photography.
-
-## Reusable archive components
-
-- `PublicShell`, `PublicHero`, `PublicCTA`, `ArchiveVisual` and `ArchiveStatusBadge` in `public-shared.tsx`.
-- `StoryRecord` in `story-record.tsx` accepts a typed name, profile image, relationship, title, summary, full story, period, role, source type, contributor, review status and supporting images/documents (attachments have a URL, title and optional image preview).
-- `src/types/archive.ts` defines story/gallery records and stable category/status identifiers. Real gallery items can supply an image with alt text, caption, approximate year, location, source, contributor, status and optional related story.
-- Gallery placeholders never imply that real archive items exist. The displayed count describes collection spaces. Story search and filters are explicitly disabled pending reviewed content.
-- Existing institution and history models retain their established source/review semantics.
-
-The modal uses native `dialog`, supports Escape, keeps Tab within available controls and returns focus to its opener. Images should be added only with appropriate permission, descriptions and source context.
-
-## Contribution behavior
-
-The form is a frontend preview. Native validation checks required fields and email format. Upload areas are explanatory placeholders, with no file input or transfer. Submission only shows the exact bilingual message that information has not been sent or saved.
-
-`ContributionDraftProvider` keeps form entries in React memory across client-side navigation and language changes. It does not write personal data to local/session storage, submit requests or save drafts. Reloading or closing the tab clears entries; the form explains this before entry. The permission checkbox records intended permission only; there are no attachments in this phase.
-
-Account creation, draft storage, moderation, publication and review tracking are explanatory future workflows. No contribution automatically becomes public.
-
-## Deployment URL and public metadata
-
-Copy `.env.example` to `.env.local` for local configuration, or set this environment variable in the deployment settings before building:
+Copy `.env.example` to `.env.local`, then set the real project values:
 
 ```text
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 ```
 
-Replace that local value with the real HTTPS Vercel origin after it is assigned. Do not include a path, query, credentials or fragment. Rebuild after changing it: static export resolves metadata at build time.
+No credentials are supplied or committed. Only a public anon/publishable key belongs in this variable; no service-role key is required.
 
-`src/lib/site.ts` generates each page's title, description, canonical URL, Open Graph and Twitter metadata. It uses the configured origin, with the explicit safe fallback `http://localhost:3000`. `robots.txt` and the eight-route `sitemap.xml` use the same value. The sitemap omits fabricated modification dates. Set the production origin before public indexing or social sharing.
+After reviewing this phase:
 
-`public/social-preview.svg` is the editable branded source; `public/social-preview.png` is the 1200 × 630 sharing image. No stock or generated historical photography is used.
+1. Create/select a Supabase Free project.
+2. Apply `supabase/migrations/202609140001_community.sql` once.
+3. Enable email/password authentication and confirmation; configure Site URL, callback allowlist and confirmation/reset email templates.
+4. Register a verified account and assign its admin role in the SQL Editor.
+5. Add genuine bilingual para options if available; the list starts empty.
+6. Verify the three private Storage buckets and their MIME/size limits.
+7. Test with separate normal and moderator accounts before launch.
 
-The site remains a static frontend suitable for the requested free hosting approach. No deployment was performed in this pass. Import the repository into Vercel and use the project's Next.js build; the export output is `out/`. GitHub can host the repository without additional services. Future Supabase integration is not required to run this frontend.
+The [Supabase setup guide](supabase/README.md) gives the exact email templates, role SQL, RLS behavior, storage limits, testing steps and outstanding live checks. Supabase's built-in email sender is restricted; see the guide before inviting public users. No production configuration or deployment has been performed.
 
-## Validation
+For Vercel, retain the Next.js preset and remove the old `out` output override. Set the environment variables and real site origin before rebuilding. The implementation adds no paid service or API.
 
-- Production build and independent TypeScript check.
-- All eight public routes in English and Bangla at 320, 390, 768, 1440 and 1920 pixels.
-- Desktop/mobile navigation, active states, language persistence, page titles, canonical and sharing metadata.
-- Every rendered internal link and anchor target.
-- Gallery filtering, modal open/close, keyboard containment and focus restoration.
-- Form required/email validation, exact bilingual no-save message, no POST requests, in-memory retention and no personal-data browser storage.
-- Custom 404, robots, sitemap, social image, and keyboard skip link.
-- Visual review of desktop and Bangla mobile layouts.
+## Routes
 
-Browser QA scripts and screenshots are local development artifacts in the ignored `.qa/` directory.
+Public heritage routes remain: `/`, `/history`, `/culture`, `/lungi-textile`, `/institutions`, `/people-stories`, `/gallery`, `/contribute`.
 
-## Next phase, after frontend review
+New public routes: `/community` for opted-in members and `/archive` for published community records.
 
-Gather real community material with sources and permissions. Then design the Supabase data model, authentication, storage policies and moderation workflow within the requested free-service constraints. Backend implementation has not begun.
+Account routes: `/auth/sign-up`, `/auth/sign-in`, `/auth/forgot-password`, `/auth/reset-password`, plus verification/callback handlers.
+
+Protected routes: `/dashboard`, `/dashboard/profile`, `/dashboard/contributions/new`, `/dashboard/contributions/[id]`, `/admin`, `/admin/[id]`.
+
+## Architecture and security
+
+- Next.js App Router, TypeScript, React and Tailwind remain the foundation.
+- Official `@supabase/supabase-js` and `@supabase/ssr` clients use cookies; a proxy refreshes sessions and server guards verify users and roles.
+- Database mutations go through validated functions. RLS, privilege restrictions and public projections enforce ownership, privacy and review state independently of the UI.
+- Directory visibility defaults off. Public responses exclude email, phone, roles, private notes and Auth records.
+- Drafts save to the database when configured. Submitted entries are locked until changes are requested. No contribution automatically becomes public.
+- Images/PDFs use private owner-specific storage paths, file restrictions and short-lived signed URLs. Images are resized in the browser.
+- Public heritage pages are not automatically populated by submissions. Published records appear in the separate archive, without invented translations.
+- No new paid service, automatic AI generation or realtime subscription is used.
+
+## Bilingual content and design
+
+The existing `LanguageProvider` is still the only language system. New labels and friendly errors are in `src/content/community.ts`. The user’s language persists across navigation; community-authored text is never automatically translated.
+
+Cormorant Garamond, Inter and Hind Siliguri remain the typography. Next.js downloads these free fonts at build time and serves them locally. Woven CSS motifs and the original palette remain intact. The smooth-scroll navigation fix and body-scoped extension hydration compatibility are retained.
+
+## Tests and limitations
+
+`npm run test:security` executes the migration and security scenarios in embedded PostgreSQL with minimal Auth/Storage stubs. `npm run test:guards` checks server authorization, redirect safety and key configuration. Neither substitutes for live Supabase Auth/Storage testing.
+
+Build, TypeScript and credential-free bilingual/responsive browser checks pass. Hosted signup, email verification/reset, session refresh and real upload/download end-to-end checks await actual credentials and setup. The detailed guide lists these explicitly.
+
+The V1 history is preserved in `FRONTEND-COMPLETION.md`. Current Phase 2 files, validation and remaining setup are listed in `PHASE2-COMPLETION.md`.

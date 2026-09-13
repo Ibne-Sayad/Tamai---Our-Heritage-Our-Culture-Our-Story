@@ -1,3 +1,4 @@
+import { communityTranslations } from "./community";
 import { publicTranslations } from "./public";
 import { cultureTranslations } from "./culture";
 import { institutionTranslations } from "./institutions";
@@ -6,7 +7,7 @@ import { textileTranslations } from "./textile";
 export type Locale = "en" | "bn";
 export const translations = {
   en: {
-    public: publicTranslations.en,
+    community: communityTranslations.en, public: publicTranslations.en,
     culture: cultureTranslations.en,
     institutionPage: institutionTranslations.en,
     history: historyTranslations.en,
@@ -43,7 +44,7 @@ export const translations = {
     footerNote: "Built as a community-driven digital archive for Tamai.", footerPlace: "Tamai, Belkuchi, Sirajganj, Bangladesh", footerEnd: "Remembering our roots. Sharing our story.", backTop: "Back to top",
   },
   bn: {
-    public: publicTranslations.bn,
+    community: communityTranslations.bn, public: publicTranslations.bn,
     culture: cultureTranslations.bn,
     institutionPage: institutionTranslations.bn,
     history: historyTranslations.bn,
