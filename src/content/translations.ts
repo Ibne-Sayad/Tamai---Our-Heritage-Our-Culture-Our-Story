@@ -1,6 +1,17 @@
+import { publicTranslations } from "./public";
+import { cultureTranslations } from "./culture";
+import { institutionTranslations } from "./institutions";
+import { historyTranslations } from "./history";
+import { textileTranslations } from "./textile";
 export type Locale = "en" | "bn";
 export const translations = {
   en: {
+    public: publicTranslations.en,
+    culture: cultureTranslations.en,
+    institutionPage: institutionTranslations.en,
+    history: historyTranslations.en,
+    textile: textileTranslations.en,
+    textileExplore: "Explore our textile heritage",
     name: "Tamai", tagline: "Our Heritage, Our Culture, Our Story",
     nav: ["Home", "History", "Culture", "Lungi & Textile", "Institutions", "People & Stories", "Gallery", "Contribute"],
     skip: "Skip to content", menu: "Menu", close: "Close menu", language: "Choose language",
@@ -32,6 +43,12 @@ export const translations = {
     footerNote: "Built as a community-driven digital archive for Tamai.", footerPlace: "Tamai, Belkuchi, Sirajganj, Bangladesh", footerEnd: "Remembering our roots. Sharing our story.", backTop: "Back to top",
   },
   bn: {
+    public: publicTranslations.bn,
+    culture: cultureTranslations.bn,
+    institutionPage: institutionTranslations.bn,
+    history: historyTranslations.bn,
+    textile: textileTranslations.bn,
+    textileExplore: "আমাদের তাঁতশিল্পের ঐতিহ্য জানুন",
     name: "তামাই", tagline: "আমাদের ঐতিহ্য, আমাদের সংস্কৃতি, আমাদের গল্প",
     nav: ["প্রচ্ছদ", "ইতিহাস", "সংস্কৃতি", "লুঙ্গি ও তাঁতশিল্প", "প্রতিষ্ঠান", "মানুষ ও গল্প", "ছবিঘর", "অবদান রাখুন"],
     skip: "মূল বিষয়বস্তুতে যান", menu: "মেনু", close: "মেনু বন্ধ করুন", language: "ভাষা নির্বাচন করুন",

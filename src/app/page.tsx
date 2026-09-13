@@ -1,3 +1,2 @@
 import { Home } from "@/components/home";
-import { LanguageProvider } from "@/components/language-provider";
-export default function Page() { return <LanguageProvider><Home /></LanguageProvider>; }
+export default function Page() { return <Home />; }

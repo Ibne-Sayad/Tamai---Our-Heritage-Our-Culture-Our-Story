@@ -1,0 +1,108 @@
+import type { Locale } from "./translations";
+const en = {
+ common: {
+  pending: "Awaiting community documentation", placeholder: "Collection preview · no record published", photo: "Photograph awaiting contribution",
+  explore: "Explore this collection", contribute: "How to contribute", all: "All categories", close: "Close preview", preview: "Preview collection",
+  noRecords: "No stories published yet", filterNotice: "Archive controls are a preview. Search and filters will become available when reviewed stories are published.",
+  labels: { name: "Person name", relationship: "Relationship to Tamai", title: "Story title", summary: "Short summary", story: "Full story", period: "Approximate time period", role: "Occupation / role", sourceType: "Source type", contributor: "Contributor", status: "Archive status", supporting: "Supporting photos / documents", category: "Category", year: "Approximate year", location: "Location", source: "Photographer / source", caption: "Caption", related: "Related story", profile: "Profile photograph" },
+  status: {
+   verified: { label: "Verified", text: "Key claims checked against reliable sources. Verification does not remove the need for context or later corrections." },
+   documented: { label: "Documented", text: "Supported by identified records, with sources and context reviewed." },
+   oral: { label: "Oral History", text: "A spoken account preserved with permission and context; claims may still need corroboration." },
+   memory: { label: "Community Memory", text: "A personal or shared recollection, presented as remembered rather than independently verified." },
+   submitted: { label: "Community Submitted", text: "Received from a contributor; not an endorsement or confirmation of accuracy." },
+   review: { label: "Under Review", text: "Material awaiting source checks, comparison or clarification." }
+  },
+  notFound: "This thread leads somewhere else.", notFoundText: "We could not find that page. Return to the village archive to continue exploring.", home: "Return to Home",
+ },
+ people: {
+  title: "People & Stories", subtitle: "The lives, memories and experiences that make Tamai what it is.", eyebrow: "THE PEOPLE BEHIND THE PLACE", art: "Every life.\nAnother thread.",
+  introLabel: "A HUMAN ARCHIVE", introTitle: "A village is more\nthan its landmarks.", intro: "Tamai’s story is held by families, elders, weavers, craftspeople, teachers, entrepreneurs, workers and community contributors. People living outside Tamai carry part of that story too. This collection makes room for everyday lives, not only prominent names.",
+  categoriesLabel: "MANY WAYS TO BELONG", categoriesTitle: "Whose story will we hear?", categories: ["Elders & Memories", "Weavers & Craftspeople", "Entrepreneurs & Traders", "Teachers & Educators", "Community Contributors", "Diaspora Stories"],
+  descriptions: ["Childhood, family life and places remembered, in the words of those who experienced them.", "Skills, working lives and craft knowledge, shared by the people who practise them.", "Personal accounts of making a livelihood, trading and building a business.", "Memories of learning, teaching and the relationships formed around education.", "Everyday care, voluntary work and the people who help sustain community life.", "Connections to Tamai carried across distances, by former residents and their families."],
+  featuredLabel: "A FUTURE STORY", featuredTitle: "A life, with room\nfor its context.", featuredText: "This reusable record shows how a future contribution can be presented. No person, biography or quotation has been added.",
+  sampleTitle: "A story yet to be shared", sampleSummary: "A short introduction will appear here after a real story has been contributed and reviewed.", sampleStory: "The full account will be presented in the contributor’s context, with sources, permissions and any editorial clarification recorded.",
+  oralLabel: "ORAL HISTORY", oralTitle: "Before a memory\ngoes unrecorded.", oralText: "Future interviews can preserve personal memories and the details that written records may miss. Record the speaker’s permission, the interview context and approximate dates; distinguish recollection from independently checked fact.",
+  oralTopics: ["Childhood & old Tamai", "Textile industry", "Handloom / power loom transition", "Village institutions", "Liberation War memories", "Customs & family history", "Businesses", "Village development"],
+  generationsLabel: "GENERATIONS OF TAMAI", generationsTitle: "Different perspectives.\nA shared place.", generationsText: "An editorial framework for future accounts, not a dated timeline. Generations overlap, and each person’s experience deserves its own context.",
+  generations: ["Earlier memories", "Lives across change", "Growing up today"], generationText: ["Recollections awaiting interviews and supporting material.", "Accounts of continuity and change awaiting documentation.", "Young people’s experiences awaiting contribution and permission."],
+  archiveLabel: "THE STORY ARCHIVE", archiveTitle: "The collection begins with people.", search: "Search stories", category: "Story category", period: "Generation / time period", status: "Archive status", allPeriods: "All periods", allStatuses: "All statuses",
+  cta: "Share a story from Tamai", ctaText: "Your own experience, a family memory or a carefully recorded interview could become part of this archive.",
+ },
+ gallery: {
+  title: "Tamai Gallery", subtitle: "Photographs, memories and visual records of village life.", eyebrow: "THE VISUAL ARCHIVE", art: "Keep the picture.\nKeep its story.",
+  introLabel: "LOOKING, REMEMBERING", introTitle: "More than an image.", intro: "A photograph becomes more meaningful when we know where it came from, who it shows and what is remembered about it. These collection spaces are ready for real community material; no historical photographs are presented here.",
+  categories: ["Historical Tamai", "Lungi & Textile", "Village Life", "Institutions", "Culture & Events", "People", "Documents & Archives"],
+  captions: ["A space for older views of Tamai, with dates and sources where known.", "A space for looms, workshops, textiles and the people around them.", "A space for everyday places and moments, contributed with context.", "A space for photographs and records of community institutions.", "A space for celebrations, gatherings and cultural practices.", "A space for portraits and group photographs, shared with permission.", "A space for documents, letters and other visual records."],
+  collectionLabel: "BROWSE THE COLLECTION SPACES", collectionTitle: "An archive waiting to unfold.", count: "Collection spaces shown", filter: "Filter gallery by category", modalNote: "This is a collection placeholder, not an archival photograph. The fields below show the context future images will carry.", pending: "Not yet supplied", relatedPending: "No related story yet",
+  wantedLabel: "FROM FAMILY ALBUMS TO A SHARED ARCHIVE", wantedTitle: "Old Photos Wanted", wantedText: "Tamai families can help preserve photographs and records that might otherwise remain unseen. Keep the original safe and, when contributions open, share a copy with permission and as much context as you know.",
+  wantedItems: ["Family & village photographs", "Loom / workshop photographs", "School & wedding photographs", "Bazar photographs & cultural events", "Documents & old letters", "Relevant newspaper clippings"], cta: "Contribute a Photo",
+ },
+ contribution: {
+  title: "Contribute to Tamai", subtitle: "Help preserve our village history, culture and memories.", eyebrow: "AN ARCHIVE WE BUILD TOGETHER", art: "Your memory.\nOur shared story.",
+  introLabel: "EVERY CONTRIBUTION MATTERS", introTitle: "One person cannot\nremember a village alone.", intro: "People from Tamai, former residents, families and anyone connected to the village can help preserve its history. A small detail, a photograph with a name or a correction supported by a source can make the archive more useful.",
+  typesTitle: "What would you like to share?", types: ["Submit Historical Information", "Share a Story or Memory", "Submit Institution Information", "Submit Old Photos", "Share Lungi & Textile Heritage", "Submit Cultural Information", "Suggest a Correction", "Submit Other Information"],
+  formLabel: "PREPARE A CONTRIBUTION", formTitle: "Start with what you know.", formNotice: "Frontend preview: sending and uploads are not available yet. Entries stay in memory while you browse this site, but will be lost when you reload or close the tab. Nothing is stored or transmitted.",
+  fields: { type: "Contribution type", title: "Title", description: "Description / Story", period: "Approximate year or time period", location: "Relevant area / location within Tamai", source: "Source of information", name: "Contributor name", email: "Email", phone: "Phone (optional)", notes: "Additional notes (optional)" },
+  optional: "Optional", required: "Fields marked * are required.", select: "Choose a contribution type", images: "Image upload", documents: "Supporting document", uploadNote: "Uploads will be available with the future submission system. No file is selected or uploaded in this preview.",
+  faith: "I confirm that the information is provided in good faith.", permission: "I have permission to share any photographs/documents I intend to contribute.", submit: "Preview submission", result: "The community submission system is currently being prepared. This information has not been sent or saved yet.",
+  futureLabel: "THE NEXT CHAPTER", futureTitle: "A future home for your contributions.", futureText: "The account system is planned. Later, registered users will be able to sign in, save drafts, submit information, upload images, track review status, edit requested revisions and see published contributions.",
+  workflow: ["Create Account", "Submit Contribution", "Pending Review", "Moderator Verification", "Published to Tamai Archive"],
+  trustLabel: "MODERATION & TRUST", trustTitle: "Shared with care.\nPublished after review.", trustText: "No community contribution will automatically become public. The planned review process checks sources, asks for clarification and distinguishes memory from verified evidence. This helps protect Tamai’s historical accuracy while preserving different experiences.",
+  moderation: ["Submitted", "Pending Review", "Verification", "Editing / clarification if required", "Approved", "Published"], statusTitle: "How evidence and review will be described", statusText: "These labels describe different kinds of evidence and review states. They are not a ladder in which every memory becomes a verified fact.",
+ }
+};
+const bn: typeof en = {
+ common: {
+  pending: "বাসিন্দাদের অংশগ্রহণে নথিভুক্তির অপেক্ষায়", placeholder: "সংগ্রহের নমুনা · কোনো নথি প্রকাশিত হয়নি", photo: "ছবি সংগ্রহের অপেক্ষায়",
+  explore: "সংগ্রহটি দেখুন", contribute: "যেভাবে অবদান রাখবেন", all: "সব বিভাগ", close: "প্রিভিউ বন্ধ করুন", preview: "সংগ্রহের প্রিভিউ",
+  noRecords: "এখনও কোনো গল্প প্রকাশিত হয়নি", filterNotice: "আর্কাইভের নিয়ন্ত্রণগুলোর নমুনা। যাচাই করা গল্প প্রকাশিত হলে খোঁজা ও বাছাই করার সুবিধা চালু হবে।",
+  labels: { name: "ব্যক্তির নাম", relationship: "তামাইয়ের সঙ্গে সম্পর্ক", title: "গল্পের শিরোনাম", summary: "সংক্ষিপ্ত পরিচিতি", story: "পূর্ণ গল্প", period: "আনুমানিক সময়কাল", role: "পেশা / ভূমিকা", sourceType: "তথ্যসূত্রের ধরন", contributor: "অবদানকারী", status: "আর্কাইভের অবস্থা", supporting: "সহায়ক ছবি / দলিল", category: "বিভাগ", year: "আনুমানিক বছর", location: "স্থান", source: "আলোকচিত্রী / সূত্র", caption: "ছবির বিবরণ", related: "সংশ্লিষ্ট গল্প", profile: "ব্যক্তির ছবি" },
+  status: {
+   verified: { label: "যাচাইকৃত", text: "মূল দাবিগুলো নির্ভরযোগ্য সূত্রের সঙ্গে মিলিয়ে দেখা হয়েছে। প্রেক্ষাপট ও পরবর্তী সংশোধনের প্রয়োজন তবুও থাকতে পারে।" },
+   documented: { label: "নথিভিত্তিক", text: "চিহ্নিত নথির সমর্থন রয়েছে এবং সূত্র ও প্রেক্ষাপট পর্যালোচিত হয়েছে।" },
+   oral: { label: "মৌখিক ইতিহাস", text: "অনুমতি ও প্রেক্ষাপটসহ সংরক্ষিত কথ্য বয়ান; দাবিগুলোর আরও সমর্থন প্রয়োজন হতে পারে।" },
+   memory: { label: "সামাজিক স্মৃতি", text: "ব্যক্তিগত বা সম্মিলিত স্মৃতিচারণ; স্বাধীনভাবে যাচাই করা তথ্য হিসেবে উপস্থাপিত নয়।" },
+   submitted: { label: "বাসিন্দাদের দেওয়া তথ্য", text: "অবদানকারীর কাছ থেকে পাওয়া তথ্য; নির্ভুলতার অনুমোদন বা নিশ্চয়তা নয়।" },
+   review: { label: "পর্যালোচনাধীন", text: "সূত্র যাচাই, তুলনা বা ব্যাখ্যার অপেক্ষায় থাকা উপাদান।" }
+  },
+  notFound: "এই সুতো অন্য কোথাও নিয়ে যায়।", notFoundText: "পাতাটি পাওয়া যায়নি। গ্রামের আর্কাইভে ফিরে আবার ঘুরে দেখুন।", home: "প্রচ্ছদে ফিরুন",
+ },
+ people: {
+  title: "মানুষ ও গল্প", subtitle: "মানুষের জীবন, স্মৃতি ও অভিজ্ঞতায় গড়ে ওঠা তামাইয়ের গল্প।", eyebrow: "একটি জনপদের পেছনের মানুষ", art: "প্রতিটি জীবন।\nআরেকটি সুতো।",
+  introLabel: "মানুষের আর্কাইভ", introTitle: "গ্রাম শুধু\nতার স্থাপনাগুলো নয়।", intro: "পরিবার, প্রবীণ, তাঁতি, কারিগর, শিক্ষক, উদ্যোক্তা, শ্রমজীবী ও সমাজে অবদান রাখা মানুষদের কাছে তামাইয়ের গল্প জমা আছে। তামাইয়ের বাইরে থাকা মানুষেরাও সেই গল্পের অংশ বহন করেন। এই সংগ্রহে পরিচিত নামের পাশাপাশি সাধারণ মানুষের জীবনেরও জায়গা আছে।",
+  categoriesLabel: "সম্পর্কের নানা রূপ", categoriesTitle: "কার গল্প শুনব আমরা?", categories: ["প্রবীণদের স্মৃতি", "তাঁতি ও কারিগর", "উদ্যোক্তা ও ব্যবসায়ী", "শিক্ষক ও শিক্ষাবিদ", "সমাজের অবদানকারী মানুষ", "প্রবাসী তামাইবাসীর গল্প"],
+  descriptions: ["শৈশব, পরিবার ও মনে থাকা জায়গাগুলো, যাঁরা দেখেছেন তাঁদের কথায়।", "দক্ষতা, কর্মজীবন ও কারিগরি জ্ঞান, চর্চাকারীদের নিজের বয়ানে।", "জীবিকা, বাণিজ্য ও ব্যবসা গড়ে তোলার ব্যক্তিগত অভিজ্ঞতা।", "শেখা, শেখানো ও শিক্ষাকে ঘিরে গড়ে ওঠা সম্পর্কের স্মৃতি।", "প্রতিদিনের যত্ন, স্বেচ্ছাশ্রম ও সমাজজীবন এগিয়ে নেওয়া মানুষদের কথা।", "দূরে থেকেও তামাইয়ের সঙ্গে সংযোগ, সাবেক বাসিন্দা ও তাঁদের পরিবারের বয়ানে।"],
+  featuredLabel: "ভবিষ্যতের একটি গল্প", featuredTitle: "একটি জীবন,\nতার প্রেক্ষাপটসহ।", featuredText: "ভবিষ্যতের অবদান কীভাবে তুলে ধরা যাবে, এই পুনর্ব্যবহারযোগ্য নমুনা তা দেখায়। কোনো ব্যক্তি, জীবনী বা উদ্ধৃতি যোগ করা হয়নি।",
+  sampleTitle: "এখনও না-বলা একটি গল্প", sampleSummary: "সত্যিকারের গল্প পাওয়া ও পর্যালোচনার পর এখানে সংক্ষিপ্ত পরিচিতি থাকবে।", sampleStory: "তথ্যসূত্র, অনুমতি ও প্রয়োজনীয় সম্পাদকীয় ব্যাখ্যাসহ অবদানকারীর প্রেক্ষাপটে পূর্ণ বয়ান তুলে ধরা হবে।",
+  oralLabel: "মৌখিক ইতিহাস", oralTitle: "স্মৃতি হারিয়ে\nযাওয়ার আগেই।", oralText: "ভবিষ্যৎ সাক্ষাৎকারে ব্যক্তিগত স্মৃতি ও লিখিত নথিতে না-থাকা খুঁটিনাটি সংরক্ষিত হতে পারে। বক্তার অনুমতি, সাক্ষাৎকারের প্রেক্ষাপট ও আনুমানিক সময় লিখে রাখুন; স্মৃতিচারণকে স্বাধীনভাবে যাচাই করা তথ্য থেকে আলাদা করুন।",
+  oralTopics: ["শৈশব ও পুরোনো তামাই", "বস্ত্রশিল্প", "হাততাঁত থেকে পাওয়ারলুমে পরিবর্তন", "গ্রামের প্রতিষ্ঠান", "মুক্তিযুদ্ধের স্মৃতি", "রীতিনীতি ও পারিবারিক ইতিহাস", "ব্যবসা", "গ্রামের উন্নয়ন"],
+  generationsLabel: "তামাইয়ের প্রজন্ম", generationsTitle: "ভিন্ন দৃষ্টিভঙ্গি।\nএকই জনপদ।", generationsText: "ভবিষ্যৎ বয়ানের সম্পাদকীয় কাঠামো, তারিখসহ সময়রেখা নয়। প্রজন্মগুলোর অভিজ্ঞতায় মিল থাকে, আবার প্রতিটি মানুষের নিজস্ব প্রেক্ষাপটও আছে।",
+  generations: ["আগের দিনের স্মৃতি", "পরিবর্তনের মধ্য দিয়ে জীবন", "আজকের বেড়ে ওঠা"], generationText: ["সাক্ষাৎকার ও সহায়ক উপাদানের অপেক্ষায় স্মৃতিচারণ।", "ধারাবাহিকতা ও পরিবর্তনের বয়ান নথিভুক্তির অপেক্ষায়।", "তরুণদের অভিজ্ঞতা, অবদান ও অনুমতির অপেক্ষায়।"],
+  archiveLabel: "গল্পের আর্কাইভ", archiveTitle: "মানুষকে দিয়েই সংগ্রহের শুরু।", search: "গল্প খুঁজুন", category: "গল্পের বিভাগ", period: "প্রজন্ম / সময়কাল", status: "আর্কাইভের অবস্থা", allPeriods: "সব সময়কাল", allStatuses: "সব অবস্থা",
+  cta: "তামাইয়ের একটি গল্প শেয়ার করুন", ctaText: "আপনার নিজের অভিজ্ঞতা, পারিবারিক স্মৃতি বা যত্ন নিয়ে নেওয়া সাক্ষাৎকার এই আর্কাইভের অংশ হতে পারে।",
+ },
+ gallery: {
+  title: "তামাই গ্যালারি", subtitle: "তামাইয়ের জীবন, ইতিহাস ও স্মৃতির দৃশ্যমান আর্কাইভ।", eyebrow: "দৃশ্যমান আর্কাইভ", art: "ছবিটি রাখুন।\nতার গল্পটিও।",
+  introLabel: "দেখা ও মনে রাখা", introTitle: "শুধু একটি ছবি নয়।", intro: "ছবি কোথা থেকে এসেছে, তাতে কে আছেন আর কী স্মৃতি জড়িয়ে আছে জানলে তার অর্থ আরও গভীর হয়। এই সংগ্রহের জায়গাগুলো বাসিন্দাদের সত্যিকারের উপাদানের জন্য প্রস্তুত; এখানে কোনো ঐতিহাসিক ছবি উপস্থাপন করা হয়নি।",
+  categories: ["পুরোনো তামাই", "লুঙ্গি ও তাঁতশিল্প", "গ্রামীণ জীবন", "প্রতিষ্ঠান", "সংস্কৃতি ও আয়োজন", "মানুষ", "দলিল ও আর্কাইভ"],
+  captions: ["পুরোনো তামাইয়ের দৃশ্যের জন্য জায়গা, জানা থাকলে সময় ও সূত্রসহ।", "তাঁত, কর্মশালা, কাপড় ও সংশ্লিষ্ট মানুষদের জন্য জায়গা।", "প্রেক্ষাপটসহ দৈনন্দিন স্থান ও মুহূর্তের ছবি রাখার জায়গা।", "সামাজিক প্রতিষ্ঠানের ছবি ও নথির জন্য জায়গা।", "উদযাপন, সমাবেশ ও সাংস্কৃতিক চর্চার জন্য জায়গা।", "অনুমতি নিয়ে দেওয়া ব্যক্তিগত ও দলগত ছবির জন্য জায়গা।", "দলিল, চিঠি ও অন্যান্য দৃশ্যমান নথির জন্য জায়গা।"],
+  collectionLabel: "সংগ্রহের বিভাগগুলো দেখুন", collectionTitle: "উন্মোচনের অপেক্ষায় একটি আর্কাইভ।", count: "দেখানো সংগ্রহের জায়গা", filter: "বিভাগ অনুযায়ী গ্যালারি বাছাই করুন", modalNote: "এটি সংগ্রহের নমুনা, আর্কাইভের ছবি নয়। নিচের ঘরগুলো ভবিষ্যৎ ছবির সঙ্গে থাকা প্রেক্ষাপট দেখায়।", pending: "এখনও দেওয়া হয়নি", relatedPending: "এখনও সংশ্লিষ্ট গল্প নেই",
+  wantedLabel: "পারিবারিক অ্যালবাম থেকে সবার আর্কাইভে", wantedTitle: "পুরোনো ছবি খুঁজছি", wantedText: "অদেখা থেকে যেতে পারে এমন ছবি ও নথি সংরক্ষণে তামাইয়ের পরিবারগুলো সাহায্য করতে পারেন। মূল কপিটি নিরাপদে রাখুন। অবদান নেওয়া চালু হলে অনুমতি ও জানা প্রেক্ষাপটসহ একটি কপি দিন।",
+  wantedItems: ["পরিবার ও গ্রামের ছবি", "তাঁত / কর্মশালার ছবি", "বিদ্যালয় ও বিয়ের ছবি", "বাজারের ছবি ও সাংস্কৃতিক আয়োজন", "দলিল ও পুরোনো চিঠি", "প্রাসঙ্গিক সংবাদপত্রের কাটিং"], cta: "ছবি জমা দিন",
+ },
+ contribution: {
+  title: "তামাইয়ের জন্য তথ্য দিন", subtitle: "আমাদের গ্রামের ইতিহাস, সংস্কৃতি ও স্মৃতি সংরক্ষণে অংশ নিন।", eyebrow: "একসঙ্গে গড়া একটি আর্কাইভ", art: "আপনার স্মৃতি।\nআমাদের গল্প।",
+  introLabel: "প্রতিটি অবদান মূল্যবান", introTitle: "একা একজনের পক্ষে\nপুরো গ্রাম মনে রাখা সম্ভব নয়।", intro: "তামাইয়ের মানুষ, সাবেক বাসিন্দা, পরিবার ও গ্রামের সঙ্গে যুক্ত যে কেউ ইতিহাস সংরক্ষণে সাহায্য করতে পারেন। ছোট একটি তথ্য, নামসহ একটি ছবি বা সূত্রসমর্থিত সংশোধনও আর্কাইভকে সমৃদ্ধ করতে পারে।",
+  typesTitle: "কী শেয়ার করতে চান?", types: ["ইতিহাসের তথ্য দিন", "গল্প বা স্মৃতি শেয়ার করুন", "প্রতিষ্ঠানের তথ্য দিন", "পুরোনো ছবি দিন", "তাঁত ও লুঙ্গি শিল্পের তথ্য দিন", "সংস্কৃতি ও ঐতিহ্যের তথ্য দিন", "ভুল তথ্য সংশোধনের প্রস্তাব দিন", "অন্যান্য তথ্য দিন"],
+  formLabel: "অবদান প্রস্তুত করুন", formTitle: "যা জানেন, তা দিয়েই শুরু করুন।", formNotice: "ফ্রন্টএন্ড নমুনা: তথ্য পাঠানো ও আপলোড এখনও চালু হয়নি। এই সাইটে ঘোরার সময় লেখা সাময়িকভাবে থাকবে, তবে পাতা রিলোড করলে বা ট্যাব বন্ধ করলে হারিয়ে যাবে। কিছু সংরক্ষণ বা পাঠানো হচ্ছে না।",
+  fields: { type: "অবদানের ধরন", title: "শিরোনাম", description: "বিবরণ / গল্প", period: "আনুমানিক বছর বা সময়কাল", location: "তামাইয়ের সংশ্লিষ্ট এলাকা / স্থান", source: "তথ্যের উৎস", name: "অবদানকারীর নাম", email: "ইমেইল", phone: "ফোন (ঐচ্ছিক)", notes: "অতিরিক্ত মন্তব্য (ঐচ্ছিক)" },
+  optional: "ঐচ্ছিক", required: "* চিহ্নিত ঘরগুলো পূরণ করা প্রয়োজন।", select: "অবদানের ধরন বেছে নিন", images: "ছবি আপলোড", documents: "সহায়ক দলিল", uploadNote: "ভবিষ্যৎ তথ্য জমা দেওয়ার ব্যবস্থায় আপলোড চালু হবে। এই নমুনায় কোনো ফাইল বাছাই বা আপলোড করা হয় না।",
+  faith: "আমি নিশ্চিত করছি যে তথ্যগুলো সৎ উদ্দেশ্যে দেওয়া হচ্ছে।", permission: "যে ছবি বা দলিল দিতে চাই, সেগুলো শেয়ার করার অনুমতি আমার আছে।", submit: "তথ্য জমা দেওয়ার প্রিভিউ", result: "কমিউনিটি তথ্য জমা দেওয়ার ব্যবস্থা বর্তমানে প্রস্তুত করা হচ্ছে। আপনার তথ্য এখনো পাঠানো বা সংরক্ষণ করা হয়নি।",
+  futureLabel: "পরবর্তী অধ্যায়", futureTitle: "আপনার অবদানের ভবিষ্যৎ ঠিকানা।", futureText: "অ্যাকাউন্ট ব্যবস্থা পরিকল্পনায় রয়েছে। পরে নিবন্ধিত ব্যবহারকারীরা সাইন ইন, খসড়া সংরক্ষণ, তথ্য জমা, ছবি আপলোড, পর্যালোচনার অবস্থা দেখা, চাওয়া সংশোধন করা ও প্রকাশিত অবদান দেখতে পারবেন।",
+  workflow: ["অ্যাকাউন্ট তৈরি", "তথ্য জমা", "পর্যালোচনার অপেক্ষায়", "যাচাই", "তামাই আর্কাইভে প্রকাশ"],
+  trustLabel: "পর্যালোচনা ও আস্থা", trustTitle: "যত্ন নিয়ে শেয়ার।\nযাচাইয়ের পর প্রকাশ।", trustText: "বাসিন্দাদের কোনো অবদান স্বয়ংক্রিয়ভাবে প্রকাশিত হবে না। পরিকল্পিত পর্যালোচনায় সূত্র দেখা, ব্যাখ্যা চাওয়া এবং স্মৃতির সঙ্গে যাচাই করা তথ্যের পার্থক্য করা হবে। ভিন্ন অভিজ্ঞতা সংরক্ষণের পাশাপাশি এটি তামাইয়ের ইতিহাসের নির্ভুলতা রক্ষায় সাহায্য করবে।",
+  moderation: ["তথ্য জমা", "পর্যালোচনার অপেক্ষায়", "যাচাই", "প্রয়োজনে সম্পাদনা / ব্যাখ্যা", "অনুমোদিত", "প্রকাশিত"], statusTitle: "প্রমাণ ও পর্যালোচনার পরিচয়", statusText: "এই পরিচয়গুলো ভিন্ন প্রমাণের ধরন ও পর্যালোচনার অবস্থা বোঝায়। প্রতিটি স্মৃতি ধাপে ধাপে যাচাইকৃত তথ্যে পরিণত হয়, এমন নয়।",
+ }
+};
+export const publicTranslations = { en, bn } satisfies Record<Locale, typeof en>;
